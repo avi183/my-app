@@ -8,6 +8,6 @@ node{
   }
   stage('slacknotification'){
    
-    slackSend botUser: true, channel: 'jenkins-pipeline-demo', teamDomain: 'avis', tokenCredentialId: 'slack-demo2'
+   slackSend botUser: true, channel: '#jenkins-pipeline-demo', message: 'fvdbvfgbfgbgfby', teamDomain: 'avis', tokenCredentialId: 'slack-demo2'
   }
 }
