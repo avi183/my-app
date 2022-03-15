@@ -1,17 +1,9 @@
-@Library("app-lib") _
-pipeline {
-  agent any
-
-  oy to Tomcat') {
-      steps {
-        tomcatDeploy(["172.31.13.38","172.31.13.38","172.31.13.38"],"ec2-user","tomcat-dev")
-      }
-    }
+node{
+  stage('SCM checkout'){
+         git 'https://github.com/avi183/my-app'
   }
-  post {
-    success {
-      archiveArtifacts artifacts: 'target/*.war'
-      cleanWs()
-    }
+  stage('compile-package'){
+    def mvnHome = tool name: 'maven-3', type: 'maven'
+    sh "${mvnHome}/bin/mvn package"
   }
 }
