@@ -20,6 +20,9 @@ pipeline{
          }
          stage("deply to tomcat"){
          steps{
+         sshagent(['tomcat-new']) {
+    // some block
+
          sh """
          
          scp -o StrictKeyHostChecking=no target/myweb.war ec2-user@172.31.35.95:/opt/apache-tomcat-9.0.60/webapps/
@@ -27,6 +30,7 @@ pipeline{
          ssh ec2-user@172.31.35.95 /opt/apache-tomcat-9.0.60/bin/startup.sh
          
          """
+         }
          }
          }
     }
